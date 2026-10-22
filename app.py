@@ -1,15 +1,16 @@
 """Search-link service: builds shareable search URLs."""
 
+from urllib.parse import quote
+
 import requests
 from flask import Flask, jsonify, request
-from werkzeug.urls import url_quote
 
 app = Flask(__name__)
 
 
 def search_link(term: str) -> str:
     """Relative URL that searches for `term`."""
-    return "/search?q=" + url_quote(term)
+    return "/search?q=" + quote(term)
 
 
 @app.get("/link")
